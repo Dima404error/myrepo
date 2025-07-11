@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -14,10 +14,9 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/')
-@app.route('/home')
-def index(name, id):
-	return render_template("index.html")
+@app.route('//<string:name>/<int:id>')
+def user(name, id):
+    return "User page: " + name + " - " + str(id)
 
 
 if __name__ == "__main__":
